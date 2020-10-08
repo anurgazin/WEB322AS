@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #d8d8cc;
+}
+.content {
+  display: grid;
+  grid-template-columns: 0.4fr 0.3fr 0.3fr;
+  column-gap: 10px;
+  row-gap: 4px;
+  background-color: #d8d8cc;
+}
+.header {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  margin: 4px;
+  text-transform: uppercase;
+  border: 3px solid #083b66;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e5e5dc;
+}
+.header .logo {
+  margin-left: 8px;
+}
+.header a {
+  text-decoration: none;
+  color: inherit;
+}
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+}
+.navbar li {
+  margin-right: 15px;
+  font-family: "Libre Baskerville", serif;
+  color: #414649;
+}
+.header .button {
+  border: none;
+  font-family: "Libre Baskerville", serif;
+  padding: 8px 25px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 1.25rem;
+  background-color: #083b66;
+}
+.header .button:hover,
+.navbar li a:hover {
+  color: gray;
+}
+.burger {
+  display: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.line {
+  height: 2px;
+  width: 35px;
+  margin: 0.5rem 0;
+  background: #083b66;
+  transition: transform 0.75s ease, opacity 0.75s ease;
+}
+.navbar.show .line1 {
+  transform: translate(-10px) rotate(45deg) translate(15px);
+}
+.navbar.show .line2 {
+  opacity: 0;
+}
+.navbar.show .line3 {
+  transform: translate(-10px) rotate(-45deg) translate(15px);
+}
+.navbar.show .menu {
+  transform: translateX(0%);
+}
+@media screen and (max-width: 800px) {
+  .menu {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .burger {
+    display: block;
+  }
+  .menu {
+    position: fixed;
+    top: auto;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: #64d4eb;
+    transform: translateX(100%);
+    transition: transform 1s ease;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+  }
+}
+.footer {
+  grid-column: 1/4;
+  grid-row: 6/8;
+  border: 3px solid #083b66;
+  margin: 4px;
+  display: inline-block;
+  height: 70px;
+  background-color: #e5e5dc;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.copyright {
+  width: 50%;
+  float: left;
+}
+.copyright p {
+  padding-left: 10%;
+  color: #083b66;
+  font-size: 0.7em;
+  line-height: 70px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+.footer img {
+  width: 50px;
+  height: 50px;
+}
+.social {
+  width: 50%;
+  float: right;
+  margin-top: 7px;
+}
+.social a {
+  float: left;
+  line-height: 70px;
+  text-decoration: none;
+  color: #414649;
+  text-align: center;
+  font-weight: bold;
+}
+.linked {
+  width: 20%;
+}
+.face {
+  width: 20%;
+}
+.tweet {
+  width: 20%;
+}
+.sign {
+  width: 40%;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  padding-left: 140px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup h1 {
+  margin-top: 15px;
+  color: #083b66;
+  font-family: "Libre Baskerville", serif;
+  font-size: 40px;
+}
+.popup label {
+  margin-top: 40px;
+  font-family: "Libre Baskerville", serif;
+  font-size: 16px;
+  color: #414649;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #0d5692;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  background: #fff;
+}
+.popup input[type="email"],
+.popup input[type="password"] {
+  font-family: "Josefin Slab", serif;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  background-color: #e8eeef;
+  color: #414649;
+}
+.popup input[type="button"] {
+  border: none;
+  margin-left: 40px;
+  margin-top: 5px;
+  font-family: "Libre Baskerville", serif;
+  padding: 8px 10px;
+  color: #fff;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #083b66;
+}
+
+.form {
+  grid-column: 2/3;
+  grid-row: 2/6;
+  border: 3px solid #083b66;
+  width: 300px;
+  height: 350px;
+  padding: 15px;
+  margin-top: 60px;
+  text-align: center;
+  background-color: #e5e5dc;
+}
+.form select,
+.form input[type=email],
+.form input[type=password],
+.form input[type=text] {
+  margin-top: 15px;
+  border-radius: 15px;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}

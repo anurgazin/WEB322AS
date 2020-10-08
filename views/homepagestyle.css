@@ -1,19 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,600&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.content{
+body{
+  background-color: #d8d8cc;
+}
+.content {
   display: grid;
   grid-template-columns: 0.4fr 0.3fr 0.3fr;
   column-gap: 10px;
   row-gap: 4px;
   background-color: #d8d8cc;
 }
-.header{
+.header {
   grid-column: 1 / 4;
   grid-row: 1 / 2;
   margin: 4px;
@@ -25,25 +28,25 @@
   align-items: center;
   background-color: #e5e5dc;
 }
-.header .logo{
+.header .logo {
   margin-left: 8px;
 }
 .header a {
   text-decoration: none;
   color: inherit;
 }
-.navbar ul{
+.navbar ul {
   display: flex;
   list-style-type: none;
 }
-.navbar li{
+.navbar li {
   margin-right: 15px;
-  font-family: 'Libre Baskerville', serif;
-  color:#414649;
+  font-family: "Libre Baskerville", serif;
+  color: #414649;
 }
-.header button {
+.header .button {
   border: none;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   padding: 8px 25px;
   color: #fff;
   font-weight: 600;
@@ -51,8 +54,8 @@
   border-radius: 1.25rem;
   background-color: #083b66;
 }
-.header button:hover,
-.navbar li a:hover{
+.header .button:hover,
+.navbar li a:hover {
   color: gray;
 }
 .burger {
@@ -103,7 +106,7 @@
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
   }
 }
-.search_form{
+.search_form {
   grid-column: 1 / 2;
   grid-row: 2 / 4;
   padding: 20px;
@@ -111,45 +114,42 @@
   border: 3px solid #083b66;
   background-color: #e5e5dc;
 }
-.search_form h1{
+.search_form h1 {
   color: #083b66;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
-.search_form select{
-	background: rgba(255,255,255,.1);
+.search_form select {
+  background: rgba(255, 255, 255, 0.1);
   border: none;
-  font-family: 'Josefin Slab', serif;
-	border-radius: 4px;
-	font-size: 15px;
-	margin: 0;
-	outline: 0;
-	padding: 10px;
-	width: 80%;
-  box-sizing: border-box; 
+  font-family: "Josefin Slab", serif;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 80%;
+  box-sizing: border-box;
   border: 3px solid #ccc;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   outline: none;
-	background-color: #e8eeef;
-	color:#414649;
+  background-color: #e8eeef;
+  color: #414649;
   margin-bottom: 30px;
   margin-top: 30px;
 }
-/* .search_form input [type="date"]{
-
-} */
-.search_form select:focus{
+.search_form select:focus {
   border: 3px solid #555;
 }
-.search_form label{
-  font-family: 'Libre Baskerville', serif;
+.search_form label {
+  font-family: "Libre Baskerville", serif;
   font-size: 16px;
-  color:#414649;
+  color: #414649;
   padding-right: 65px;
 }
-.search_form .button{
+.search_form .button {
   border: none;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   padding: 8px 25px;
   color: #fff;
   font-weight: 600;
@@ -157,7 +157,7 @@
   border-radius: 1.25rem;
   background-color: #083b66;
 }
-.search_form .button:hover{
+.search_form .button:hover {
   color: gray;
 }
 .promotion {
@@ -176,16 +176,16 @@
 .promotion h5 {
   font-size: 35px;
   color: #083b66;
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
 }
 .promotion p {
   margin-top: 100px;
   color: #fff;
   font-size: 17px;
   padding-left: 5px;
-  font-family: 'Josefin Slab', serif;
+  font-family: "Josefin Slab", serif;
 }
-.montreal{
+.montreal {
   grid-column: 1;
   grid-row: 1/2;
   background-image: url("../pictures/montreal4.jpg");
@@ -196,7 +196,7 @@
   border: 3px solid #083b66;
   text-decoration: none;
 }
-.toronto{
+.toronto {
   grid-column: 2;
   grid-row: 1/2;
   background-image: url("../pictures/toronto2.jpg");
@@ -207,7 +207,7 @@
   border: 3px solid #083b66;
   text-decoration: none;
 }
-.quebec{
+.quebec {
   grid-column: 1;
   grid-row: 2/3;
   background-image: url("../pictures/quebec.jpg");
@@ -218,7 +218,7 @@
   border: 3px solid #083b66;
   text-decoration: none;
 }
-.victoria{
+.victoria {
   grid-column: 2;
   grid-row: 2/3;
   background-image: url("../pictures/victoria4.jpg");
@@ -229,24 +229,180 @@
   border: 3px solid #083b66;
   text-decoration: none;
 }
-.about-us{
+.about-us {
   grid-column: 1/4;
   grid-row: 4/6;
   margin: 4px;
-  /* background-color: #e5e5dc; */
+  background-color: #e5e5dc;
+  border: 3px solid #083b66;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 210px 210px;
+  padding: 15px 200px 15px;
 }
-.about-us img{
+.about-us p {
+  width: 300px;
+  font-size: 17px;
+  padding-left: 5px;
+  font-family: "Josefin Slab", serif;
+}
+.about-us img {
   position: 50% 50%;
   width: 300px;
   height: 300px;
   object-fit: cover;
+  border: 3px solid #083b66;
+  border-radius: 15px;
 }
-.service{
-  margin-left: 15px;
+.about-us h2,
+.about-us h3 {
+  font-size: 25px;
+  color: #083b66;
+  font-family: "Dancing Script", cursive;
+  margin-left: 100px;
+}
+.service {
   grid-column: 1;
   grid-row: 1/2;
+  margin-left: 8em;
+}
+.why-we {
+  grid-column: 2;
+  grid-row: 1/2;
+  margin-left: 8em;
+}
+.why-we p {
+  padding-left: 15px;
+}
+.footer {
+  grid-column: 1/4;
+  grid-row: 6/8;
+  border: 3px solid #083b66;
+  margin: 4px;
+  display: inline-block;
+  height: 70px;
+  background-color: #e5e5dc;
+}
+.copyright {
+  width: 50%;
+  float: left;
+}
+.copyright p {
+  padding-left: 10%;
+  color: #083b66;
+  font-size: 0.7em;
+  line-height: 70px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+.footer img {
+  width: 50px;
+  height: 50px;
+}
+.social {
+  width: 50%;
+  float: right;
+  margin-top: 7px;
+}
+.social a {
+  float: left;
+  line-height: 70px;
+  text-decoration: none;
+  color: #414649;
+  text-align: center;
+  font-weight: bold;
+}
+.linked {
+  width: 20%;
+}
+.face {
+  width: 20%;
+}
+.tweet {
+  width: 20%;
+}
+.sign {
+  width: 40%;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  padding-left: 140px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup h1 {
+  margin-top: 15px;
+  color: #083b66;
+  font-family: "Libre Baskerville", serif;
+  font-size: 40px;
+}
+.popup label {
+  margin-top: 40px;
+  font-family: "Libre Baskerville", serif;
+  font-size: 16px;
+  color: #414649;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #0d5692;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  background: #fff;
+}
+.popup input[type="email"],
+.popup input[type="password"] {
+  font-family: "Josefin Slab", serif;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  background-color: #e8eeef;
+  color: #414649;
+}
+.popup input[type="button"] {
+  border: none;
+  margin-left: 40px;
+  margin-top: 5px;
+  font-family: "Libre Baskerville", serif;
+  padding: 8px 10px;
+  color: #fff;
+  font-weight: 300;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #083b66;
 }
