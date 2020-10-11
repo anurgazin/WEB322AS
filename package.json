@@ -12,5 +12,13 @@
   },
   "author": "Aldiyar Nurgazin",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anurgazin/WEB322AS1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anurgazin/WEB322AS1/issues"
+  },
+  "homepage": "https://github.com/anurgazin/WEB322AS1#readme",
   "description": ""
 }
