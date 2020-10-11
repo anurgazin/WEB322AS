@@ -114,10 +114,6 @@ body {
   display: inline-block;
   height: 70px;
   background-color: #e5e5dc;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
 }
 .copyright {
   width: 50%;
@@ -240,4 +236,115 @@ body {
   cursor: pointer;
   border-radius: 4px;
   background-color: #083b66;
+}
+.main {
+  grid-column: 1/4;
+  grid-row: 2/6;
+  margin: 4px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 210px 210px;
+}
+.img-container {
+  grid-column: 2/4;
+  grid-row: 1/4;
+  border: 3px solid #083b66;
+  padding: 0px;
+  max-width: 1000px;
+  max-height: 505px;
+}
+
+.descr {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  padding: 5px;
+  background-color: #e5e5dc;
+  border: 3px solid #083b66;
+  flex-direction: column;
+  display: flex;
+}
+.descr h1 {
+  color: #083b66;
+  font-family: "Libre Baskerville", serif;
+}
+.descr p {
+  font-family: "Libre Baskerville", serif;
+  font-size: 13px;
+  color: #414649;
+}
+.book {
+  justify-content: flex-end;
+  display: flex;
+}
+.book .button {
+  border: none;
+  font-family: "Libre Baskerville", serif;
+  padding: 8px 25px;
+  color: #fff;
+  font-weight: 600;
+  /* cursor: pointer; */
+  margin-top: 90px;
+  border-radius: 1.25rem;
+  background-color: #083b66;
+}
+.book .button:hover {
+  text-decoration: none;
+  color: gray;
+}
+.comments {
+  grid-column: 1/2;
+  grid-row: 3/6;
+  background-color: #e5e5dc;
+  border: 3px solid #083b66;
+}
+.comments h1 {
+  color: #083b66;
+  font-family: "Libre Baskerville", serif;
+}
+.comments p {
+  font-family: "Libre Baskerville", serif;
+  font-size: 13px;
+  color: #414649;
+}
+.service {
+  grid-row: 4/6;
+  grid-column: 2/4;
+  border: 3px solid #083b66;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  padding: 5px;
+}
+.service .h {
+  grid-column: 1/4;
+  grid-row: 1/2;
+  color: #083b66;
+  font-family: "Libre Baskerville", serif;
+}
+.service p {
+  font-family: "Libre Baskerville", serif;
+  font-size: 13px;
+  color: #414649;
+}
+.modal .button1 {
+  border: none;
+  font-family: "Libre Baskerville", serif;
+  padding: 8px 25px;
+  color: #fff;
+  font-weight: 600;
+  /* cursor: pointer; */
+  border-radius: 1.25rem;
+  background-color: #083b66;
+}
+.modal .button2 {
+  border: none;
+  font-family: "Libre Baskerville", serif;
+  padding: 8px 25px;
+  border-radius: 1.25rem;
+}
+.modal .button1:hover,
+.modal .button2:hover {
+  color: gray;
 }
