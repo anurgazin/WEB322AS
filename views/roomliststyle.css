@@ -95,12 +95,13 @@ body {
     position: fixed;
     top: auto;
     right: 0;
-    height: 100%;
+    height: 70%;
     width: 50%;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    background: #64d4eb;
+    border: 3px solid #083b66;
+    background-color: #d8d8cc;
     transform: translateX(100%);
     transition: transform 1s ease;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
@@ -112,7 +113,6 @@ body {
   border: 3px solid #083b66;
   margin: 4px;
   display: inline-block;
-  height: 70px;
   background-color: #e5e5dc;
 }
 .copyright {
@@ -130,6 +130,7 @@ body {
 .footer img {
   width: 50px;
   height: 50px;
+  margin-top: 15px;
 }
 .social {
   width: 50%;
@@ -175,12 +176,16 @@ body {
 .popup {
   margin: 70px auto;
   padding: 20px;
-  padding-left: 140px;
-  background: #fff;
+  background-color: #e5e5dc;
   border-radius: 5px;
   width: 30%;
   position: relative;
-  transition: all 5s ease-in-out;
+  transition: all 3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
 }
 .popup h1 {
   margin-top: 15px;
@@ -191,8 +196,10 @@ body {
 .popup label {
   margin-top: 40px;
   font-family: "Libre Baskerville", serif;
+  
   font-size: 16px;
   color: #414649;
+  text-align: center;
 }
 .popup .close {
   position: absolute;
@@ -207,10 +214,10 @@ body {
 .popup .close:hover {
   color: #0d5692;
 }
-.popup .content {
+.popup .content2 {
   max-height: 30%;
   overflow: auto;
-  background: #fff;
+  background-color: #e5e5dc;
 }
 .popup input[type="email"],
 .popup input[type="password"] {
@@ -224,10 +231,10 @@ body {
   outline: none;
   background-color: #e8eeef;
   color: #414649;
+  text-align: center;
 }
 .popup input[type="button"] {
   border: none;
-  margin-left: 40px;
   margin-top: 5px;
   font-family: "Libre Baskerville", serif;
   padding: 8px 10px;
@@ -237,7 +244,6 @@ body {
   border-radius: 4px;
   background-color: #083b66;
 }
-
 .cards {
   grid-column: 1/4;
   grid-row: 2/6;
@@ -267,4 +273,79 @@ body {
   font-size: 35px;
   color: #083b66;
   font-family: "Dancing Script", cursive;
+}
+@media screen and (max-width: 350px){
+  .cards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .card img {
+    max-width: 200px;
+  }
+  .footer {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer .copyright {
+    order: 1;
+  }
+  .footer .social {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .popup{
+    width: 75%;
+  }
+}
+@media screen and (min-width:600px) and (max-width: 1300px){
+  .cards {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+  .card img {
+    max-width: 300px;
+  }
+  .footer {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer .copyright {
+    order: 1;
+  }
+  .footer .social {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .popup{
+    width: 75%;
+  }
+}
+@media screen and (min-width:350px) and (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .card img {
+    max-width: 300px;
+  }
+  .footer {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer .copyright {
+    order: 1;
+  }
+  .footer .social {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .popup{
+    width: 75%;
+  }
 }

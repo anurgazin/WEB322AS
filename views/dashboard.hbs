@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/views/dashboardstyle.css" />
+    <title>Dashboard</title>
+    <script src="/index.js"></script>
+</head>
+
+<body>
+     {{> header}}
+    <div class="content">
+       
+        <div class="mainc">
+            <h1>Welcome, {{data.fName}} {{data.lName}},</h1>
+            <h2>to the world of luxury travel!</h2>
+            <p>It is very important for us that your vacation in another city,
+          country or even continent will be amazing and will be remembered by
+          you with wonderful impressions.</p>
+        </div>
+        {{> footer}}
+    </div>
+
+</body>
+
+</html>
