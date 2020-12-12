@@ -327,3 +327,16 @@ body {
       width: 75%;
     }
   }
+
+  .button{
+    font-family: "Libre Baskerville", serif;
+    text-decoration: none;
+  color: #fff;
+  /* font-weight: 600; */
+  align-items: center;
+  cursor: pointer;
+  margin: 15px;
+  border-radius: 1.25rem;
+  height: 25px;
+  background-color: #083b66;
+}

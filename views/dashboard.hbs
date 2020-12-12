@@ -10,15 +10,19 @@
 </head>
 
 <body>
-     {{> header}}
+    {{> header}}
     <div class="content">
-       
         <div class="mainc">
-            <h1>Welcome, {{data.fName}} {{data.lName}},</h1>
+            <h1>Welcome, {{user.firstName}} {{user.lastName}},</h1>
             <h2>to the world of luxury travel!</h2>
             <p>It is very important for us that your vacation in another city,
-          country or even continent will be amazing and will be remembered by
-          you with wonderful impressions.</p>
+                country or even continent will be amazing and will be remembered by
+                you with wonderful impressions.</p>
+            <a class="button" href="/logout">LOG OUT</a>
+            {{#if user.isAdmin}}
+            <a class="button" href="/bnbCreate">Add new BnB</a>
+            <a class="button" href="/bnbEdit">Edit a BnB</a>
+            {{/if}}
         </div>
         {{> footer}}
     </div>

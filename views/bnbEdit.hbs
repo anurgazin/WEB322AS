@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/views/bnbEditstyle.css" />
+    <title>BnB Edit</title>
+</head>
+<body>
+    {{> header}}
+    <div class="content">
+        <div class="list">
+            {{#each details}}
+            <p>{{title}}</p>
+            <form action="/edit" method="post">
+                <input type="submit" class="button" value="edit" />
+            </form>
+            {{/each}}
+        </div>
+        {{> footer}}
+    </div>
+    
+</body>
+</html>

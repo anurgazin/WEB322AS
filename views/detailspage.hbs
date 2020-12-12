@@ -146,7 +146,11 @@
           </div>
         </div>
         <div class="descr">
+          {{#if bnb.desc}}
+          <h1> {{bnb.desc}}</h1>
+          {{else}}
           <h1>2552 Neilson Avenue</h1>
+          {{/if}}
           <p>
             Aenean convallis condimentum scelerisque. Praesent nec commodo dui.
             Duis dapibus, augue vitae dictum aliquam, sapien tellus mollis sem,

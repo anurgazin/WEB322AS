@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/views/bnbCreatestyle.css" />
+    <title>bnbCreate</title>
+</head>
+
+<body>
+    {{> header}}
+    <div class="content">
+        <div class="form">
+            <h1>Create a BnB</h1>
+            <form method="POST" action="/bnbCreate" enctype="multipart/form-data">
+                <label for="title">BnB Title</label><br />
+                <input type="text" id="title" name="title" required /><br />
+                <label for="price">Price per Night</label><br />
+                <input type="number" id="price" name="price" required /><br />
+                <label for="city">City</label><br />
+                <input type="text" id="city" name="city" required /><br />
+                <label for="location">Address</label><br />
+                <input type="text" id="location" name="location" required /><br />
+                <div class="service">
+                    <label for="breakfast">Breakfast</label>
+                    <input type="checkbox" id="breakfast" name="amenities"><br />
+                    <label for="tv">Television</label>
+                    <input type="checkbox" id="tv" name="amenities"><br />
+                    <label for="wifi">Wi-Fi</label>
+                    <input type="checkbox" id="wifi" name="amenities"><br />
+                    <label for="washer">Washer</label>
+                    <input type="checkbox" id="washer" name="amenities"><br />
+                    <label for="hairdr">Hair Dryer</label>
+                    <input type="checkbox" id="hairdr" name="amenities"><br />
+                    <label for="ac">Air Conditioning</label>
+                    <input type="checkbox" id="ac" name="amenities"><br />
+                </div>
+                <label for="desc">Description</label><br />
+                <textarea id="desc" name="desc" placeholder="Something About BnB"></textarea><br />
+                <label for="photo">Photo Upload</label><br />
+                <input type="file" id="photo" name="photo" /><br />
+                <input type="submit"  value="create" />
+            </form>
+        </div>
+        {{> footer}}
+    </div>
+</body>
+
+</html>
