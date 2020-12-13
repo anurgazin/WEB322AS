@@ -1,91 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="description" content="site to book hotel" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Room List</title>
-    <link rel="stylesheet" href="/views/roomliststyle.css" />
-    <script src="/index.js"></script>
-  </head>
-  <body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="site to book hotel" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Room List</title>
+  <link rel="stylesheet" href="/views/roomliststyle.css" />
+  <script src="/index.js"></script>
+</head>
+
+<body>
   {{> header}}
-   <div class="content">
-      <div class="cards">
-        <a href="/detailspage" class="card">
-          <div>
-            <img
-              src="/pictures/room1.jpg"
-              alt="room1"
-              width="400px"
-              height="300px"
-            />
-            <h1>Guests Room</h1>
-            <p>Price rate: $60 CAD/night</p>
-          </div>
-        </a>
-        <a href="/detailspage" class="card">
-          <div>
-            <img
-              src="/pictures/room2.jpg"
-              alt="room2"
-              width="200px"
-              height="300px"
-            />
-            <h1>Entire Apartment</h1>
-            <p>Price rate: $150 CAD/night</p>
-          </div>
-        </a>
-        <a href="/detailspage" class="card">
-          <div>
-            <img
-              src="/pictures/room3.jpg"
-              alt="room3"
-              width="200px"
-              height="300px"
-            />
-            <h1>Private Room</h1>
-            <p>Price rate: $80 CAD/night</p>
-          </div>
-        </a>
-        <a href="/detailspage" class="card">
-          <div>
-            <img
-              src="/pictures/room4.jpg"
-              alt="room4"
-              width="400px"
-              height="300px"
-            />
-            <h1>Guests Suite</h1>
-            <p>Price rate: $170 CAD/night</p>
-          </div>
-        </a>
-        <a href="/detailspage" class="card">
-          <div>
-            <img
-              src="/pictures/room5.jpg"
-              alt="room5"
-              width="400px"
-              height="300px"
-            />
-            <h1>Entire condo</h1>
-            <p>Price rate: $190 CAD/night</p>
-          </div>
-        </a>
-        <a href="/detailspage" class="card">
-          <div>
-            <img
-              src="/pictures/room6.jpg"
-              alt="room6"
-              width="400px"
-              height="300px"
-            />
-            <h1>Hotel Suite</h1>
-            <p>Price rate: $150 CAD/night</p>
-          </div>
-        </a>
-      </div>
-      {{> footer}}
+  <div class="content">
+    <div class="cards">
+      {{#each details}}
+      <a href="/details/{{_id}}" class="card">
+        <div>
+          <img src={{fileName}} alt="room1" width="400px" height="300px" />
+          <h1>{{title}}</h1>
+          <p>Price rate: ${{price}} CAD/night</p>
+        </div>
+      </a>
+      {{/each}}
     </div>
-  </body>
+    {{> footer}}
+  </div>
+</body>
+
 </html>
