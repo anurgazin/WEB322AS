@@ -10,9 +10,22 @@
 <body>
     {{> header}}
     <div class="content">
+      <div class="cards">
         {{#each details}}
-            <p>{{title}}</p>
+           <a href="/details/{{_id}}" class="card">
+          <div>
+            <img
+              src={{fileName}}
+              alt="room1"
+              width="400px"
+              height="300px"
+            />
+            <h1>{{title}}</h1>
+            <p>Price rate: ${{price}} CAD/night</p>
+          </div>
+        </a>
             {{/each}}
+      </div>
         {{>footer}}
     </div>
 </body>

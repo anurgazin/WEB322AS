@@ -2,17 +2,18 @@ var express = require("express");
 var app = express();
 const path = require("path");
 var nodemailer = require("nodemailer");
+var moment = require("moment");
 var mongoose = require("mongoose");
-var multer  = require('multer')
+var multer = require("multer");
 var Schema = mongoose.Schema;
 var usrModule = require("./models/userModule");
 var bnbModule = require("./models/bnbModule");
 const hbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 
+mongoose.set("useFindAndModify", false);
 
 app.use(express.static(__dirname + "/"));
-
 
 const { response } = require("express");
 const clientSessions = require("client-sessions");
@@ -34,16 +35,23 @@ mongoose.connection.on("open", () => {
 
 var HTTP_PORT = process.env.PORT || 8080;
 
-const STORAGE = multer.diskStorage({
-  destination: './public/photos/',
-  filename: function(req, file, cb) {
-      console.log("Uploading Photo")
-      cb(null, Date.now() + path.extname(file.originalname));   
+function ensureLogin(req, res, next) {
+  if (!req.session.user) {
+    res.redirect("/login");
+  } else {
+    next();
   }
-  
+}
+
+const STORAGE = multer.diskStorage({
+  destination: "./public/photos/",
+  filename: function (req, file, cb) {
+    console.log("Uploading Photo");
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
 });
 
-const UPLOAD = multer({storage: STORAGE});
+const UPLOAD = multer({ storage: STORAGE });
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
@@ -97,57 +105,190 @@ app.get("/registration", function (req, res) {
 });
 
 app.get("/roomlist", function (req, res) {
-  res.render("roomlist", {
-    user: req.session.user,
-    bnb: req.bnb,
-    layout: false,
-  });
+  bnbModule
+    .find({})
+    .lean()
+    .exec()
+    .then((bnbs) => {
+      res.render("roomlist", {
+        user: req.session.user,
+        details: bnbs,
+        layout: false,
+      });
+    });
 });
 
-app.get("/bnbCreate", function (req, res) {
+app.get("/bnbCreate", ensureLogin, function (req, res) {
   res.render("bnbCreate", {
     user: req.session.user,
     layout: false,
   });
 });
 
-app.get("/bnbEdit", function (req, res) {
+app.get("/bnbEdit", ensureLogin, function (req, res) {
   // console.log(bnbModule);
-  bnbModule.find({})
-  .lean()
-  .exec()
-  .then((bnbs)=>{res.render("bnbEdit", {
-    user: req.session.user,
-    details: bnbs,
-    layout: false,
-  });})
+  bnbModule
+    .find({})
+    .lean()
+    .exec()
+    .then((bnbs) => {
+      res.render("bnbEdit", {
+        user: req.session.user,
+        details: bnbs,
+        layout: false,
+      });
+    });
 });
 
-app.get("/detailspage", function (req, res) {
-  res.render("detailspage", {
+app.get("/delete/:roomId", ensureLogin, (req, res) => {
+  const roomId = req.params.roomId;
+  bnbModule.deleteOne({ _id: roomId }).then(() => {
+    res.redirect("/bnbEdit");
+  });
+});
+
+app.get("/details/:roomId", function (req, res) {
+  const roomId = req.params.roomId;
+  console.log(roomId);
+  bnbModule
+    .findById(roomId)
+    .lean()
+    .exec()
+    .then((bnbs) => {
+      res.render("detailspage", {
+        user: req.session.user,
+        details: bnbs,
+        layout: false,
+      });
+    });
+});
+
+app.post("/searchres", (req, res) => {
+  bnbModule
+    .find({ city: req.body.city })
+    .lean()
+    .exec()
+    .then((bnbs) => {
+      res.render("searchres", {
+        user: req.session.user,
+        details: bnbs,
+        layout: false,
+      });
+    });
+});
+
+app.get("/edit", ensureLogin, (req, res) => {
+  res.render("edit", {
     user: req.session.user,
     layout: false,
   });
 });
-app.post("/searchres", (req, res) => {
-  bnbModule.find({})
-  .lean()
-  .exec()
-  .then((bnbs)=>{res.render("searchres", {
-    user: req.session.user,
-    details: bnbs,
-    layout: false,
-  });})
+
+app.get("/edit/:roomId", ensureLogin, (req, res) => {
+  const roomId = req.params.roomId;
+  console.log(roomId);
+  bnbModule
+    .findById(roomId)
+    .lean()
+    .exec()
+    .then((bnb) => {
+      res.render("edit", {
+        user: req.session.user,
+        details: bnb,
+        editmode: true,
+        layout: false,
+      });
+    });
 });
 
-// app.post("/edit", UPLOAD.single("photo"), (req, res)=>{
-//   const DETAILS = req.body;
-//   const FORM_FILE = req.file;
-//   console.log(FORM_FILE.filename);
-//   const roomId = req.params._id
-// })
+app.post("/edit/:roomId", ensureLogin, (req, res) => {
+  const roomId = req.params.roomId;
+  console.log(roomId);
+  bnbModule
+    .findById(roomId)
+    .lean()
+    .exec()
+    .then((bnbs) => {
+      res.render("edit", {
+        user: req.session.user,
+        details: bnbs,
+        editmode: true,
+        layout: false,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
-app.post("/bnbCreate", UPLOAD.single("photo"), (req, res) => {
+app.post(
+  "/bnbEdit/:bnbId",
+  ensureLogin,
+  UPLOAD.single("photo"),
+  async (req, res) => {
+    const BNB_DET = req.body;
+    const FORM_FILE = req.file;
+    console.log(FORM_FILE.filename);
+    console.log(BNB_DET.desc);
+    const bnbId = req.params.bnbId;
+    console.log(bnbId);
+    var bnb = await bnbModule.findByIdAndUpdate(bnbId, {
+      title: BNB_DET.title,
+      desc: BNB_DET.desc,
+      price: BNB_DET.price,
+      services: BNB_DET.amenities,
+      location: BNB_DET.location,
+      fileName: FORM_FILE.path,
+      city: BNB_DET.city,
+    });
+
+    res.redirect("/bnbEdit");
+  }
+);
+
+app.post("/confirmation/:roomId", ensureLogin, (req, res) => {
+  const roomId = req.params.roomId;
+  const checkin = moment(req.body.in);
+  const checkout = moment(req.body.out);
+  var difference = checkout.diff(checkin, "days");
+  bnbModule
+    .findById(roomId)
+    .lean()
+    .exec()
+    .then((bnbs) => {
+      var price = bnbs.price * difference;
+      res.render("confirmation", {
+        user: req.session.user,
+        details: bnbs,
+        fullprice: price,
+        time: difference,
+        editmode: true,
+        layout: false,
+      });
+      var mailOptions = {
+        from: "vacationroyal4@gmail.com",
+        to: req.session.user.email,
+        subject: "Confirmation of Booking",
+        html:
+          "<p>Hello, " +
+          req.session.user.firstName +
+          " " +
+          req.session.user.lastName +
+          ":</p><p>Thank you for using our service. This is Information about your order: </p><p>Bnb Name: " +
+          bnbs.title +
+          "</p><p>Price: $" + price + "</p><p>City: " + bnbs.city + "</p><p>Address: " + bnbs.location + " </p>",
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log("ERROR: " + error);
+        } else {
+          console.log("SUCCESS: " + info.response);
+        }
+      });
+    });
+});
+
+app.post("/bnbCreate", ensureLogin, UPLOAD.single("photo"), (req, res) => {
   const BNB_DET = req.body;
   const FORM_FILE = req.file;
   console.log(FORM_FILE.filename);
@@ -158,7 +299,7 @@ app.post("/bnbCreate", UPLOAD.single("photo"), (req, res) => {
     services: BNB_DET.amenities,
     location: BNB_DET.location,
     fileName: FORM_FILE.path,
-    city: BNB_DET.city
+    city: BNB_DET.city,
   });
   bnb.save().then((response) => {
     console.log(response);
@@ -167,7 +308,7 @@ app.post("/bnbCreate", UPLOAD.single("photo"), (req, res) => {
   });
 });
 
-app.post("/dashboard", (req, res) => {
+app.post("/dashboard", ensureLogin, (req, res) => {
   const FORM_DATA = req.body;
   var user = new usrModule({
     firstName: FORM_DATA.firstName,
@@ -182,7 +323,6 @@ app.post("/dashboard", (req, res) => {
       console.log("I am here");
       res.render("dashboard", {
         user: FORM_DATA,
-
         layout: false,
       });
     })
@@ -204,9 +344,9 @@ app.post("/dashboard", (req, res) => {
     subject: "Registration at Royal Vacation",
     html:
       "<p>Hello, " +
-      FORM_DATA.fName +
+      FORM_DATA.firstName +
       " " +
-      FORM_DATA.lName +
+      FORM_DATA.lastName +
       ":</p><p>Thank-you for joining to our family. We will try to fulfill all your wishes during the trip.</p>",
   };
   transporter.sendMail(mailOptions, (error, info) => {

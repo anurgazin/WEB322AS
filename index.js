@@ -12,8 +12,4 @@ function nav() {
     menu.style.visibility = "hidden";
     burger.style.visibility = "hidden";
   })
-  // close.addEventListener("click", ()=>{
-  //   menu.style.visibility = "visible";
-  //   burger.style.visibility = "visible";
-  // })
 }

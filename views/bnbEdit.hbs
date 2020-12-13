@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="/views/bnbEditstyle.css" />
+       <script src="/index.js"></script>
+      <script src="/index.js"></script>
     <title>BnB Edit</title>
 </head>
 <body>
@@ -12,9 +14,8 @@
         <div class="list">
             {{#each details}}
             <p>{{title}}</p>
-            <form action="/edit" method="post">
-                <input type="submit" class="button" value="edit" />
-            </form>
+             <a href="/edit/{{_id}}" class="button">Edit</a>
+             <a href="/delete/{{_id}}" class="button">Delete</a>
             {{/each}}
         </div>
         {{> footer}}
